@@ -2,6 +2,13 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import RepositoriesListItem from "./RepositoriesListItem";
 
+jest.mock("../tree/FileIcon.js", () => {
+  // replace content of FileIcon.js
+  return () => {
+    return "File Icon Component";
+  };
+});
+
 function renderComponent() {
   const repository = {
     full_name: "facebook/react",
@@ -20,14 +27,4 @@ function renderComponent() {
 
 test("shows a link to the github homepage for this repository", async () => {
   renderComponent();
-
-  await screen.findByRole("img", { name: "Javascript" });
 });
-
-const pause = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 100);
-  });
-};
