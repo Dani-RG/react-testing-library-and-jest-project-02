@@ -7,7 +7,6 @@ export function createServer(handlerConfig) {
       return res(ctx.json(config.res(req, res, ctx)));
     });
   });
-
   const server = setupServer(...handlers);
 
   beforeAll(() => {
